@@ -1,32 +1,34 @@
 import java.util.ArrayList;
 
-public class PetriNet {
+public class Petrinet implements IPetriNet{
 
     private ArrayList<Arc> arcs;
     private ArrayList<Place> places;
     private ArrayList<Transit> transis;
 
-    public void remArc(){
+    public void remArc(Arc arc){
         this.arcs.remove(0);
-    }
+    };
+    
+    public void addArc(Arc arc){
+        this.arcs.add(arc);
+    };
 
-    public void addArc(){
-        this.arcs.add(new Arc());
-    }
-
-    public void remPlace(){
+    public void remPlace(Place place){
         this.places.remove(0);
-    }
+    };
 
-    public void addPlace(){
-        this.places.add(new Place());
-    }
+    public void addPlace(Place place){
+        this.places.add(place);
+    };
 
-    public void remTransi(){
+    public void remTransi(Transit transi){
         this.transis.remove(0);
-    }
+    };
 
-    public void addTransi(){
-        this.transis.add(new Transit());
-    }
-}
+    public void addTransi(Transit transi){
+        this.transis.add(transi);
+    };
+
+
+};
