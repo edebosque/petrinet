@@ -1,4 +1,4 @@
-package src;
+package petrinet;
 
 /**
  * Represents a special type of outgoing arc in a Petri net that triggers when a place has zero tokens.
@@ -11,8 +11,8 @@ public class Zero extends ArcOut {
      * @param place the place connected to this arc
      * @param value the value of this arc
      */
-    public Zero(Place place, int value) {
-        super(place, value);
+    public Zero(Place place) {
+        super(place, 0);
     }
 
     /**

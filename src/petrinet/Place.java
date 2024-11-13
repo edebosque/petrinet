@@ -1,4 +1,4 @@
-package src;
+package petrinet;
 
 /**
  * Represents a place in a Petri net.

@@ -1,4 +1,4 @@
-package src;
+package petrinet;
 
 /**
  * Represents an outgoing arc in a Petri net.

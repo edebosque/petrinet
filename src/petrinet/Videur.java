@@ -1,4 +1,4 @@
-package src;
+package petrinet;
 
 /**
  * Represents a special type of outgoing arc in a Petri net that empties a place.
@@ -11,8 +11,8 @@ public class Videur extends ArcOut {
      * @param place the place connected to this arc
      * @param value the value of this arc
      */
-    public Videur(Place place, int value){
-        super(place, value);
+    public Videur(Place place){
+        super(place, 1);
     }
 
     /**
