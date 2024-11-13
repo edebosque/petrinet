@@ -7,7 +7,7 @@ import petrinet.PetriNet;
 import petrinet.Place;
 import petrinet.Transition;
 
-public class TestAffichage extends TestCase {
+public class TestRepresentation extends TestCase {
 
      /**
      *  Returns a string representation of the Petri net.
