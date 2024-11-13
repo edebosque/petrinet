@@ -1,13 +1,12 @@
-package test;
-import petri.PetriNet;
-import petri.Place;
-import petri.Transition;
-import petri.ArcIn;
-import petri.ArcOut;
-
+package tests;
 import static org.junit.Assert.assertThrows;
 
 import junit.framework.TestCase;
+import src.ArcIn;
+import src.ArcOut;
+import src.PetriNet;
+import src.Place;
+import src.Transition;
 
 
 public class Test extends TestCase {
@@ -21,18 +20,18 @@ public class Test extends TestCase {
         StringBuilder representation = new StringBuilder();
         representation.append("Reseau de Petri\n");
         representation.append(net.getPlaces().size()).append(" places\n");
-        representation.append(net.getTransis().size()).append(" transitions\n");
+        representation.append(net.getTransitions().size()).append(" transitions\n");
         representation.append(net.getArcs().size()).append(" arcs\n");
         representation.append("Liste des places :\n");
         int placeIndex = 1;
         for (Place place : net.getPlaces()) {
             representation.append(placeIndex).append(" : place avec ")
-                          .append(place.getNbJetons()).append(" jetons\n");
+                          .append(place.getNbTokens()).append(" Jetons\n");
             placeIndex++;
         }
         representation.append("Liste des transitions\n");
         int transitionIndex = 1;
-        for (Transition trans : net.getTransis()) {
+        for (Transition trans : net.getTransitions()) {
             representation.append(transitionIndex).append(" : transition, ")
                           .append(trans.getArcsIn().size()).append(" arc entrant, ")
                           .append(trans.getArcsOut().size()).append(" arc sortant\n");
@@ -45,12 +44,12 @@ public class Test extends TestCase {
             ArcIn arcIn = (ArcIn) arc;
             representation.append(arcIndex).append(" : arc simple poids ")
                       .append(arcIn.getValue()).append(" (transition vers place avec ")
-                      .append(arcIn.getPlace().getNbJetons()).append(" jetons)\n");
+                      .append(arcIn.getPlace().getNbTokens()).append(" Jetons)\n");
             } else if (arc instanceof ArcOut) {
             ArcOut arcOut = (ArcOut) arc;
             representation.append(arcIndex).append(" : arc simple poids ")
                       .append(arcOut.getValue()).append(" (place avec ")
-                      .append(arcOut.getPlace().getNbJetons()).append(" jetons vers transition)\n");
+                      .append(arcOut.getPlace().getNbTokens()).append(" Jetons vers transition)\n");
             }
             arcIndex++;
         }
@@ -66,40 +65,40 @@ public class Test extends TestCase {
             PetriNet net = new PetriNet();
             Place place = new Place(5);
             net.addPlace(place);
-            place.remJetons(3);
-            assertEquals(2, place.getNbJetons());
+            place.remTokens(3);
+            assertEquals(2, place.getNbTokens());
         }
 
         public void testRemoveTokensFromPlace2() {
             PetriNet net = new PetriNet();
             Place place = new Place(5);
             net.addPlace(place);
-            place.remJetons(6);
-            assertEquals(0, place.getNbJetons());
+            place.remTokens(6);
+            assertEquals(0, place.getNbTokens());
         }
 
         public void testRemoveNegativeTokensFromPlace() {
             PetriNet net = new PetriNet();
             Place place = new Place(5);
             net.addPlace(place);
-            place.remJetons(-6);
-            assertEquals(5, place.getNbJetons());
+            place.remTokens(-6);
+            assertEquals(5, place.getNbTokens());
         }
 
         public void testAddTokensFromPlace() {
             PetriNet net = new PetriNet();
             Place place = new Place(3);
             net.addPlace(place);
-            place.addJetons(4);
-            assertEquals(7, place.getNbJetons());
+            place.addTokens(4);
+            assertEquals(7, place.getNbTokens());
         }
 
         public void testAddNegativeTokensFromPlace() {
             PetriNet net = new PetriNet();
             Place place = new Place(3);
             net.addPlace(place);
-            place.addJetons(-4);
-            assertEquals(3, place.getNbJetons());
+            place.addTokens(-4);
+            assertEquals(3, place.getNbTokens());
         }
 
         public void testCreateArcIn() {
@@ -140,8 +139,8 @@ public class Test extends TestCase {
             net.addPlace(place);
             net.addTransition(transition);
             net.addArc(arc);
-            transition.tirer();            
-            assertEquals(0, place.getNbJetons());
+            transition.triggerTransition();            
+            assertEquals(0, place.getNbTokens());
         }
 
         public void testSimpleTransitionActivation2() {
@@ -153,8 +152,8 @@ public class Test extends TestCase {
             net.addPlace(place);
             net.addTransition(transition);
             net.addArc(arc);
-            transition.tirer();            
-            assertEquals(2, place.getNbJetons());
+            transition.triggerTransition();            
+            assertEquals(2, place.getNbTokens());
         }
 
         public void testSimpleTransitionActivation3() {
@@ -171,9 +170,9 @@ public class Test extends TestCase {
             net.addTransition(transition);
             net.addArc(arc1);
             net.addArc(arc2);
-            transition.tirer();        
-            assertEquals(1, place1.getNbJetons());
-            assertEquals(3, place2.getNbJetons());
+            transition.triggerTransition();        
+            assertEquals(1, place1.getNbTokens());
+            assertEquals(3, place2.getNbTokens());
         }
 
 
@@ -192,9 +191,9 @@ public class Test extends TestCase {
             net.addTransition(transition);
             net.addArc(arc1);
             net.addArc(arc2);
-            transition.tirer();
-            assertEquals(0, place1.getNbJetons());
-            assertEquals(0, place2.getNbJetons());
+            transition.triggerTransition();
+            assertEquals(0, place1.getNbTokens());
+            assertEquals(0, place2.getNbTokens());
         }
 
         public void testRemovePlaceDoubleArcs() {
@@ -232,8 +231,8 @@ public class Test extends TestCase {
             net.addPlace(place);
             net.addTransition(transition);
             net.addArc(arc);
-            transition.tirer();            
-            assertEquals(2, place.getNbJetons());
+            transition.triggerTransition();            
+            assertEquals(2, place.getNbTokens());
         }
 
         public void testRD2() {
@@ -245,8 +244,8 @@ public class Test extends TestCase {
             net.addPlace(place);
             net.addTransition(transition);
             net.addArc(arc);
-            transition.tirer();            
-            assertEquals(1, place.getNbJetons());
+            transition.triggerTransition();            
+            assertEquals(1, place.getNbTokens());
         }
 
         public void testRG1() {
@@ -258,8 +257,8 @@ public class Test extends TestCase {
             net.addPlace(place);
             net.addTransition(transition);
             net.addArc(arc);
-            transition.tirer();            
-            assertEquals(5, place.getNbJetons());
+            transition.triggerTransition();            
+            assertEquals(5, place.getNbTokens());
         }
 
         public void testRDG1() {
@@ -276,9 +275,9 @@ public class Test extends TestCase {
             net.addTransition(transition);
             net.addArc(arc1);
             net.addArc(arc2);
-            transition.tirer();            
-            assertEquals(3, place1.getNbJetons());
-            assertEquals(4, place2.getNbJetons());
+            transition.triggerTransition();            
+            assertEquals(3, place1.getNbTokens());
+            assertEquals(4, place2.getNbTokens());
         }
 
         public void testRDG2() {
@@ -295,9 +294,9 @@ public class Test extends TestCase {
             net.addTransition(transition);
             net.addArc(arc1);
             net.addArc(arc2);
-            transition.tirer();            
-            assertEquals(2, place1.getNbJetons());
-            assertEquals(3, place2.getNbJetons());
+            transition.triggerTransition();            
+            assertEquals(2, place1.getNbTokens());
+            assertEquals(3, place2.getNbTokens());
         }
 
         public void testRM1() {
@@ -319,10 +318,10 @@ public class Test extends TestCase {
             net.addArc(arc1);
             net.addArc(arc2);
             net.addArc(arc3);
-            transition.tirer();            
-            assertEquals(2, place1.getNbJetons());
-            assertEquals(0, place2.getNbJetons());
-            assertEquals(5, place3.getNbJetons());
+            transition.triggerTransition();            
+            assertEquals(2, place1.getNbTokens());
+            assertEquals(0, place2.getNbTokens());
+            assertEquals(5, place3.getNbTokens());
         }
 
         public void testRM2() {
@@ -344,10 +343,10 @@ public class Test extends TestCase {
             net.addArc(arc1);
             net.addArc(arc2);
             net.addArc(arc3);
-            transition.tirer();            
-            assertEquals(1, place1.getNbJetons());
-            assertEquals(1, place2.getNbJetons());
-            assertEquals(3, place3.getNbJetons());
+            transition.triggerTransition();            
+            assertEquals(1, place1.getNbTokens());
+            assertEquals(1, place2.getNbTokens());
+            assertEquals(3, place3.getNbTokens());
         }
 
    
@@ -367,7 +366,7 @@ public class Test extends TestCase {
             net.addArc(arc2);
             String stringBefore = getPetriNetRepresentation(net);
             System.out.println(getPetriNetRepresentation(net));
-            transition.tirer();     
+            transition.triggerTransition();     
             String stringAfter = getPetriNetRepresentation(net);
             System.out.println(getPetriNetRepresentation(net));   
             
@@ -376,13 +375,13 @@ public class Test extends TestCase {
                                 "1 transitions\n" + //
                                 "2 arcs\n" + //
                                 "Liste des places :\n" + //
-                                "1 : place avec 4 jetons\n" + //
-                                "2 : place avec 2 jetons\n" + //
+                                "1 : place avec 4 Jetons\n" + //
+                                "2 : place avec 2 Jetons\n" + //
                                 "Liste des transitions\n" + //
                                 "1 : transition, 1 arc entrant, 1 arc sortant\n" + //
                                 "Liste des arcs :\n" + //
-                                "1 : arc simple poids 3 (place avec 4 jetons vers transition)\n" + //
-                                "2 : arc simple poids 1 (transition vers place avec 2 jetons)\n", 
+                                "1 : arc simple poids 3 (place avec 4 Jetons vers transition)\n" + //
+                                "2 : arc simple poids 1 (transition vers place avec 2 Jetons)\n", 
                         stringBefore);
 
             assertEquals("Reseau de Petri\n" + //
@@ -390,13 +389,13 @@ public class Test extends TestCase {
                                 "1 transitions\n" + //
                                 "2 arcs\n" + //
                                 "Liste des places :\n" + //
-                                "1 : place avec 1 jetons\n" + //
-                                "2 : place avec 3 jetons\n" + //
+                                "1 : place avec 1 Jetons\n" + //
+                                "2 : place avec 3 Jetons\n" + //
                                 "Liste des transitions\n" + //
                                 "1 : transition, 1 arc entrant, 1 arc sortant\n" + //
                                 "Liste des arcs :\n" + //
-                                "1 : arc simple poids 3 (place avec 1 jetons vers transition)\n" + //
-                                "2 : arc simple poids 1 (transition vers place avec 3 jetons)\n", 
+                                "1 : arc simple poids 3 (place avec 1 Jetons vers transition)\n" + //
+                                "2 : arc simple poids 1 (transition vers place avec 3 Jetons)\n", 
                 stringAfter);
         }
 

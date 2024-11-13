@@ -1,4 +1,4 @@
-package petri;
+package src;
 
 import java.util.ArrayList;
 
@@ -69,6 +69,6 @@ public interface IPetriNet {
     * 
 	* @return all the Transitions of the Petri net.
     */
-    public ArrayList<Transition> getTransis();
+    public ArrayList<Transition> getTransitions();
 
 }

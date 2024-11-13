@@ -1,10 +1,11 @@
-package petri;
+package src;
 
 /**
  * Represents an arc in a Petri net.
  * An arc can have a value that determines the number of tokens it can transfer.
  */
 public abstract class Arc {
+    
     private int value;
     private Place place;
 

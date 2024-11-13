@@ -1,4 +1,4 @@
-package petri;
+package src;
 
 /**
  * Represents a special type of outgoing arc in a Petri net that empties a place.
@@ -23,7 +23,7 @@ public class Videur extends ArcOut {
     @Override
     public Boolean isTriggerable(){ 
         
-        return (this.getPlace().getNbJetons() >= 1);
+        return (this.getPlace().getNbTokens() >= 1);
     
     }
 
@@ -32,7 +32,7 @@ public class Videur extends ArcOut {
      */
     @Override
     public void trigger(){
-        this.getPlace().setNbJetons(0);
+        this.getPlace().setNbTokens(0);
     }
 
 }

@@ -1,4 +1,4 @@
-package petri;
+package src;
 import java.util.ArrayList;
 
 /**
@@ -60,16 +60,16 @@ public class Transition {
      * Triggers the transition.
      * 
      */
-    public void tirer(){
-        Boolean tirage = true;
+    public void triggerTransition(){
+        Boolean trigger = true;
         for(int i = 0; i < this.arcsOut.size(); i++){
             
             if(!arcsOut.get(i).isTriggerable()){
-                tirage = false;
+                trigger = false;
                 break;
             }
         }
-        if(tirage){
+        if(trigger){
             for(int i = 0; i < this.arcsOut.size(); i++){
                 this.arcsOut.get(i).trigger();
             }

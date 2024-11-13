@@ -1,4 +1,4 @@
-package petri;
+package src;
 
 /**
  * Represents a special type of outgoing arc in a Petri net that triggers when a place has zero tokens.
@@ -22,7 +22,7 @@ public class Zero extends ArcOut {
      */
     @Override
     public Boolean isTriggerable(){
-        return (this.getPlace().getNbJetons() == 0);
+        return (this.getPlace().getNbTokens() == 0);
     }
 
 
@@ -32,6 +32,6 @@ public class Zero extends ArcOut {
      */
     @Override
     public void trigger(){
-        
+        // Nothing
     }
 }

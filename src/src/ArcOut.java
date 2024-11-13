@@ -1,4 +1,4 @@
-package petri;
+package src;
 
 /**
  * Represents an outgoing arc in a Petri net.
@@ -23,7 +23,7 @@ public class ArcOut extends Arc {
      * @return true if the arc can be triggered, false otherwise
      */
     public Boolean isTriggerable() {
-        if (this.getPlace().getNbJetons() >= this.getValue()) {
+        if (this.getPlace().getNbTokens() >= this.getValue()) {
             return true;
         }
         return false;
@@ -33,7 +33,7 @@ public class ArcOut extends Arc {
      * Triggers the arc, removing tokens from the connected place.
      */
     public void trigger() {
-        this.getPlace().remJetons(this.getValue());
+        this.getPlace().remTokens(this.getValue());
     }
 
 }

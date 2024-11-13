@@ -1,4 +1,4 @@
-package petri;
+package src;
 
 /**
  * Represents an incoming arc in a Petri net.
@@ -20,7 +20,7 @@ public class ArcIn extends Arc {
      * Triggers the arc, adding tokens to the connected place.
      */
     public void trigger() {
-        this.getPlace().addJetons(this.getValue());
+        this.getPlace().addTokens(this.getValue());
     }
 
 }

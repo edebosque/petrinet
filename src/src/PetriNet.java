@@ -1,4 +1,4 @@
-package petri;
+package src;
 import java.util.ArrayList;
 
 /**
@@ -9,7 +9,7 @@ public class PetriNet implements IPetriNet{
 
     private ArrayList<Arc> arcs;
     private ArrayList<Place> places;
-    private ArrayList<Transition> transis;
+    private ArrayList<Transition> transitions;
 
 
     /**
@@ -18,7 +18,7 @@ public class PetriNet implements IPetriNet{
     public PetriNet() {
         this.arcs = new ArrayList<>();
         this.places = new ArrayList<>();
-        this.transis = new ArrayList<>();
+        this.transitions = new ArrayList<>();
     }
 
     /**
@@ -68,7 +68,7 @@ public class PetriNet implements IPetriNet{
      * @param transition the transition to remove
      */
     public void remTransition(Transition transition){
-        this.transis.remove(transition);
+        this.transitions.remove(transition);
     };
 
     /**
@@ -77,7 +77,7 @@ public class PetriNet implements IPetriNet{
      * @param transition the transition to add
      */
     public void addTransition(Transition transition){
-        this.transis.add(transition);
+        this.transitions.add(transition);
     };
 
     /**
@@ -103,8 +103,8 @@ public class PetriNet implements IPetriNet{
     * 
 	* @return all the Transitions of the Petri net.
     */
-    public ArrayList<Transition> getTransis() {
-        return transis;
+    public ArrayList<Transition> getTransitions() {
+        return transitions;
     }
 
 
