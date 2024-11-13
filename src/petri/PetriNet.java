@@ -9,7 +9,8 @@ public class PetriNet implements IPetriNet{
 
     private ArrayList<Arc> arcs;
     private ArrayList<Place> places;
-    private ArrayList<Transit> transis;
+    private ArrayList<Transition> transis;
+
 
     /**
      * Constructs a new PetriNet.
@@ -44,6 +45,11 @@ public class PetriNet implements IPetriNet{
      * @param place the place to remove
      */
     public void remPlace(Place place){
+        for (Arc arc : new ArrayList<>(arcs)) {
+            if (arc.getPlace().equals(place)) {
+                remArc(arc);
+            }
+        }
         this.places.remove(place);
     };
 
@@ -61,8 +67,8 @@ public class PetriNet implements IPetriNet{
      * 
      * @param transition the transition to remove
      */
-    public void remTransit(Transit transit){
-        this.transis.remove(transit);
+    public void remTransition(Transition transition){
+        this.transis.remove(transition);
     };
 
     /**
@@ -70,9 +76,36 @@ public class PetriNet implements IPetriNet{
      * 
      * @param transition the transition to add
      */
-    public void addTransit(Transit transit){
-        this.transis.add(transit);
+    public void addTransition(Transition transition){
+        this.transis.add(transition);
     };
+
+    /**
+	* Gets the Arcs from the Petri net.
+    * 
+	* @return all the Arcs of the Petri net.
+    */
+    public ArrayList<Arc> getArcs() {
+        return arcs;
+    }
+
+    /**
+	* Gets the Places from the Petri net.
+    * 
+	* @return all the Places of the Petri net.
+    */
+    public ArrayList<Place> getPlaces() {
+        return places;
+    }
+
+     /**
+	* Gets the Transitions from the Petri net.
+    * 
+	* @return all the Transitions of the Petri net.
+    */
+    public ArrayList<Transition> getTransis() {
+        return transis;
+    }
 
 
 };

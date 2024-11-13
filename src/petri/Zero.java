@@ -5,15 +5,14 @@ package petri;
  */
 public class Zero extends ArcOut {
 
-    Place place;
-
      /**
      * Constructs a Zero arc with the specified place.
      * 
      * @param place the place connected to this arc
+     * @param value the value of this arc
      */
-    public Zero(Place place) {
-        super(place);
+    public Zero(Place place, int value) {
+        super(place, value);
     }
 
     /**
@@ -23,7 +22,7 @@ public class Zero extends ArcOut {
      */
     @Override
     public Boolean isTriggerable(){
-        return (this.place.getNbJetons() == 0);
+        return (this.getPlace().getNbJetons() == 0);
     }
 
 

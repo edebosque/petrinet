@@ -5,15 +5,14 @@ package petri;
  */
 public class Videur extends ArcOut {
 
-    Place place;
-
     /**
      * Constructs a Videur with the specified place.
      * 
      * @param place the place connected to this arc
+     * @param value the value of this arc
      */
-    public Videur(Place place){
-        super(place);
+    public Videur(Place place, int value){
+        super(place, value);
     }
 
     /**
@@ -24,7 +23,7 @@ public class Videur extends ArcOut {
     @Override
     public Boolean isTriggerable(){ 
         
-        return (this.place.getNbJetons() >= 1);
+        return (this.getPlace().getNbJetons() >= 1);
     
     }
 
@@ -33,7 +32,7 @@ public class Videur extends ArcOut {
      */
     @Override
     public void trigger(){
-        this.place.setNbJetons(0);
+        this.getPlace().setNbJetons(0);
     }
 
 }

@@ -6,22 +6,21 @@ package petri;
  */
 public class ArcIn extends Arc {
 
-    private Place place;
-
     /**
      * Constructs an incoming arc with the specified place.
      * 
      * @param place the place connected to this arc
+     * @param value the value of this arc
      */
-    public ArcIn(Place place) {
-        this.place = place;
+    public ArcIn(Place place, int value) {
+        super(place, value);
     }
 
     /**
      * Triggers the arc, adding tokens to the connected place.
      */
     public void trigger() {
-        this.place.addJetons(this.getValue());
+        this.getPlace().addJetons(this.getValue());
     }
 
 }

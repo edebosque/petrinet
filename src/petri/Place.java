@@ -23,7 +23,12 @@ public class Place {
      * @param nbJetons the number of tokens to add
      */
     public void addJetons(int nbJetons) {
-        this.nbJetons += nbJetons;
+        if (nbJetons < 0) {
+           return;
+        }
+        else{
+            this.nbJetons += nbJetons;
+        }
     }
 
     /**
@@ -32,11 +37,17 @@ public class Place {
      * @param nbJetons the number of tokens to remove
      */
     public void remJetons(int nbJetons) {
-        if (this.nbJetons - nbJetons < 0) {
+        if (nbJetons < 0) {
+           return;
+        }
+        if( this.nbJetons - nbJetons < 0){
             this.nbJetons = 0;
             return;
         }
-        this.nbJetons -= nbJetons;
+        else{
+            this.nbJetons -= nbJetons;
+        }
+        
     }
 
     /**

@@ -6,16 +6,16 @@ package petri;
  */
 public class ArcOut extends Arc {
 
-    private Place place;
-
-    /**
-     * Constructs an outgoing arc with the specified place.
+     /**
+     * Constructs an incoming arc with the specified place.
      * 
      * @param place the place connected to this arc
+     * @param value the value of this arc
      */
-    public ArcOut(Place place) {
-        this.place = place;
+    public ArcOut(Place place, int value) {
+        super(place, value);
     }
+
 
     /**
      * Checks if the arc can be triggered.
@@ -23,7 +23,7 @@ public class ArcOut extends Arc {
      * @return true if the arc can be triggered, false otherwise
      */
     public Boolean isTriggerable() {
-        if (place.getNbJetons() >= this.getValue()) {
+        if (this.getPlace().getNbJetons() >= this.getValue()) {
             return true;
         }
         return false;
@@ -33,7 +33,7 @@ public class ArcOut extends Arc {
      * Triggers the arc, removing tokens from the connected place.
      */
     public void trigger() {
-        this.place.remJetons(this.getValue());
+        this.getPlace().remJetons(this.getValue());
     }
 
 }
